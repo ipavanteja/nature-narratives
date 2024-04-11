@@ -1,35 +1,16 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { Routes, Route, Outlet } from "react-router-dom";
+
+import Home from "./routes/home/Home";
 
 import "./App.css";
 
 function App() {
-  const [photos, setPhotos] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("https://nature-narratives-backend.onrender.com/api/photos")
-      .then((response) => {
-        setPhotos(response.data);
-      })
-      .catch((error) => {
-        console.log("error fetching photos", error);
-      });
-  }, []);
-
   return (
-    <>
-      <div className="App">
-        <h1>Nature Narratives</h1>
-        <div className="photo-grid">
-          {photos.length &&
-            photos.map((photo) => {
-              const imageUrl = `https://nature-narratives-backend.onrender.com/api/photos/${photo}`;
-              return <img key={photo} src={imageUrl} alt={`Photo`} />;
-            })}
-        </div>
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<Outlet />}>
+        <Route index element={<Home />} />
+      </Route>
+    </Routes>
   );
 }
 
