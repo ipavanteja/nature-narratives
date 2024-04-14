@@ -22,10 +22,12 @@ const Home = () => {
   const openModal = (index) => {
     setSelectedPhotoIndex(index);
     setShowModal(true);
+    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
     setShowModal(false);
+    document.body.style.overflow = "auto";
   };
 
   const navigatePhotos = (direction) => {
@@ -43,6 +45,9 @@ const Home = () => {
   return (
     <div className="home">
       <h1>Nature Narratives</h1>
+      <div>
+        <p className="tagline">- Pavan</p>
+      </div>
       <div className="photo-grid">
         {photos.map((photo, index) => (
           <img
