@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-
+import React, { useState, useEffect } from "react";
 import "./Home.css";
+import LightGallery from "lightgallery/react";
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import lgZoom from "lightgallery/plugins/zoom";
+import lgVideo from "lightgallery/plugins/video";
+import fjGallery from "flickr-justified-gallery";
 
 const imageURLs = [
   "https://i.ibb.co/LCWXP3q/20240405-073003-copy.jpg",
@@ -46,82 +49,59 @@ const imageURLs = [
 
 const Home = () => {
   const [photos, setPhotos] = useState([]);
-  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null);
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    // axios
-    //   .get("https://nature-narratives-backend.onrender.com/api/photos")
-    //   .then((response) => {
-    //     setPhotos(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log("error fetching photos", error);
-    //   });
     setPhotos(imageURLs);
   }, []);
 
-  const openModal = (index) => {
-    setSelectedPhotoIndex(index);
-    setShowModal(true);
-    document.body.style.overflow = "hidden";
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-    document.body.style.overflow = "auto";
-  };
-
-  const navigatePhotos = (direction) => {
-    if (direction === "next") {
-      setSelectedPhotoIndex((prevIndex) =>
-        prevIndex === photos.length - 1 ? 0 : prevIndex + 1
-      );
-    } else if (direction === "prev") {
-      setSelectedPhotoIndex((prevIndex) =>
-        prevIndex === 0 ? photos.length - 1 : prevIndex - 1
-      );
-    }
-  };
+  useEffect(() => {
+    fjGallery(document.querySelectorAll(".gallery"), {
+      itemSelector: ".gallery__item",
+      rowHeight: 180,
+      lastRow: "start",
+      gutter: 2,
+      rowHeightTolerance: 0.1,
+      calculateItemsHeight: false,
+    });
+  }, []);
 
   return (
-    <div className="home">
+    <div>
       <h1>Nature Narratives</h1>
       <div>
         <p className="tagline">- Pavan</p>
       </div>
-      <div className="photo-grid">
-        {photos.map((photo, index) => (
-          <img
-            key={photo}
-            // src={`https://nature-narratives-backend.onrender.com/api/photos/${photo}`}
-            src={photo}
-            alt={`Photo`}
-            onClick={() => openModal(index)}
-          />
-        ))}
-      </div>
-      {showModal && (
-        <div className="modal">
-          <span className="close" onClick={closeModal}>
-            &times;
-          </span>
-          <span className="prev" onClick={() => navigatePhotos("prev")}>
-            &#10094;
-          </span>
-          <div className="image-container">
-            <img
-              // src={`https://nature-narratives-backend.onrender.com/api/photos/${photos[selectedPhotoIndex]}`}
-              src={photos[selectedPhotoIndex]}
-              alt="Selected Photo"
-              className="modal-content"
-            />
-          </div>
-          <span className="next" onClick={() => navigatePhotos("next")}>
-            &#10095;
-          </span>
-        </div>
-      )}
+      <LightGallery
+        plugins={[lgZoom, lgVideo]}
+        mode="lg-fade"
+        pager={false}
+        thumbnail={true}
+        galleryId={"nature"}
+        autoplayFirstVideo={false}
+        elementClassNames={"gallery"}
+        mobileSettings={{
+          controls: false,
+          showCloseIcon: false,
+          download: false,
+          rotate: false,
+        }}
+      >
+        {photos.map((photo) => {
+          return (
+            <a
+              key={photo}
+              data-lg-size="1600-2400"
+              data-pinterest-text="Pin it2"
+              data-tweet-text="lightGallery slide  2"
+              className="gallery__item"
+              data-src={photo}
+              data-sub-html="<h4>Photo by - <a href='https://www.instagram.com/ipavan.life/' target='_blank' >Pavan </a></h4>"
+            >
+              <img className="img-responsive" src={photo} />
+            </a>
+          );
+        })}
+      </LightGallery>
     </div>
   );
 };

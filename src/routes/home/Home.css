@@ -1,16 +1,22 @@
-body {
-  background-color: #f2f2f2;
+@import url("https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery.css");
+@import url("https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lg-zoom.css");
+@import url("https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lg-video.css");
+
+* {
+  box-sizing: border-box;
 }
 
-.home {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 10px;
-  text-align: center;
-  position: relative;
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  padding: 40px;
+  background-image: linear-gradient(#e8f0ff 0%, white 52.08%);
+  color: #0e3481;
+  min-height: 100vh;
 }
 
 h1 {
+  text-align: center;
   font-size: 2.5rem;
   margin-bottom: 20px;
 }
@@ -23,13 +29,13 @@ h1 {
   font-style: italic;
 }
 
-.photo-grid {
-  column-count: 3;
+.gallery {
+  column-count: 4;
   column-gap: 20px;
   line-height: 0;
 }
 
-.photo-grid img {
+.gallery__item img {
   width: 100% !important;
   height: auto !important;
   margin-bottom: 20px;
@@ -37,96 +43,18 @@ h1 {
   transition: transform 0.3s ease-in-out;
 }
 
-.photo-grid img:hover {
+.gallery__item img:hover {
   transform: scale(1.05);
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-content {
-  max-width: 90%;
-  max-height: 90%;
-}
-.image-container {
-  width: 60%;
-  height: 90%;
-  background-color: white;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.close,
-.prev,
-.next {
-  color: white;
-  font-size: 2em;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-
-.close {
-  font-size: 3em;
-  right: 20px;
-  top: 20px;
-}
-
-.prev {
-  left: 20px;
-}
-
-.next {
-  right: 20px;
-}
-
 @media (max-width: 992px) {
-  .photo-grid {
+  .gallery {
     column-count: 2;
   }
 }
 
 @media (max-width: 576px) {
-  .tagline {
-    width: 80vw;
-  }
-  .photo-grid {
+  .gallery {
     column-count: 1;
-  }
-
-  .modal-content {
-    max-width: 98%;
-    max-height: 100%;
-  }
-
-  .image-container {
-    width: 90%;
-    height: 50%;
-  }
-
-  .close {
-    font-size: 2.5em;
-    right: 30px;
-    top: 80px;
-  }
-
-  .prev {
-    left: 30px;
-  }
-
-  .next {
-    right: 30px;
   }
 }
