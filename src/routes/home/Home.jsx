@@ -45,6 +45,16 @@ const imageURLs = [
   "https://i.ibb.co/gw3CP9T/IMG20231231145657-copy.jpg",
   "https://i.ibb.co/X4M96L7/IMG20231231145806-copy.jpg",
   "https://i.ibb.co/rMw4ck1/spider-web.jpg",
+  "https://i.ibb.co/tYbf8Qq/DSC-0387-copy.jpg",
+  "https://i.ibb.co/4SRH2xV/DSC-0390-copy.jpg",
+  "https://i.ibb.co/hKpSyTm/DSC-0384-copy.jpg",
+  "https://i.ibb.co/G3NQvr7/DSC-0380-copy.jpg",
+  "https://i.ibb.co/PZWBRHb/DSC-0504.jpg",
+  "https://i.ibb.co/BLz4kXC/DSC-0488.jpg",
+  "https://i.ibb.co/9Yz29z3/DSC-0458-copy.jpg",
+  "https://i.ibb.co/LpD8K9D/DSC-0486.jpg",
+  "https://i.ibb.co/jyjhc8G/DSC-0456.jpg",
+  "https://i.ibb.co/8Y6Vnp2/DSC-0454-copy.jpg",
 ];
 
 const Home = () => {
